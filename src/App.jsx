@@ -285,14 +285,23 @@ function headerIconForColumn(key) {
   )
 }
 
-/** Must respect Vite `base` (e.g. `/v7-onboarding-flow/` on GitHub Pages). */
+/**
+ * Paths under `public/` (copied to dist root). Joins `import.meta.env.BASE_URL` safely:
+ * if the base has no trailing slash, naive `${base}evidence/...` becomes `/repoevidence/...`.
+ */
+function publicAssetUrl(pathFromPublicRoot) {
+  const rel = pathFromPublicRoot.replace(/^\//, '')
+  const base = (import.meta.env.BASE_URL || '/').replace(/\/?$/, '/')
+  return `${base}${rel}`
+}
+
 const evidenceImages = {
-  cover: `${import.meta.env.BASE_URL}evidence/report-cover.png`,
-  '1': `${import.meta.env.BASE_URL}evidence/citation-1.png`,
-  '2': `${import.meta.env.BASE_URL}evidence/citation-2.png`,
-  '4': `${import.meta.env.BASE_URL}evidence/citation-4.png`,
-  '6': `${import.meta.env.BASE_URL}evidence/citation-6.png`,
-  '8': `${import.meta.env.BASE_URL}evidence/citation-8.png`,
+  cover: publicAssetUrl('evidence/report-cover.png'),
+  '1': publicAssetUrl('evidence/citation-1.png'),
+  '2': publicAssetUrl('evidence/citation-2.png'),
+  '4': publicAssetUrl('evidence/citation-4.png'),
+  '6': publicAssetUrl('evidence/citation-6.png'),
+  '8': publicAssetUrl('evidence/citation-8.png'),
 }
 
 const teaserInsights = [
