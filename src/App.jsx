@@ -285,13 +285,14 @@ function headerIconForColumn(key) {
   )
 }
 
+/** Must respect Vite `base` (e.g. `/v7-onboarding-flow/` on GitHub Pages). */
 const evidenceImages = {
-  cover: '/evidence/report-cover.png',
-  '1': '/evidence/citation-1.png',
-  '2': '/evidence/citation-2.png',
-  '4': '/evidence/citation-4.png',
-  '6': '/evidence/citation-6.png',
-  '8': '/evidence/citation-8.png',
+  cover: `${import.meta.env.BASE_URL}evidence/report-cover.png`,
+  '1': `${import.meta.env.BASE_URL}evidence/citation-1.png`,
+  '2': `${import.meta.env.BASE_URL}evidence/citation-2.png`,
+  '4': `${import.meta.env.BASE_URL}evidence/citation-4.png`,
+  '6': `${import.meta.env.BASE_URL}evidence/citation-6.png`,
+  '8': `${import.meta.env.BASE_URL}evidence/citation-8.png`,
 }
 
 const teaserInsights = [
